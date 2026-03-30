@@ -9,9 +9,11 @@ import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -70,47 +72,25 @@ class TrackkerFragment : Fragment() {
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.llRvHeader)
 
-        var isWeekendChecked = false
-        var isMonthlyChecked = false
-        var isYearlyChecked = false
+        binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            val checkedId = checkedIds.firstOrNull() ?: return@setOnCheckedStateChangeListener
+            val selectedChip = group.findViewById<View>(checkedId)
+            applyMagicTouch(selectedChip)
 
-        binding.chipWeekend.checkedIcon = null
-        binding.chipMonthly.checkedIcon = null
-
-        binding.chipWeekend.setOnClickListener {
-            isWeekendChecked = true
-            isMonthlyChecked = false
-            isYearlyChecked = false
-            if (isWeekendChecked == true){
-                changeWeekendChipColor(isWeekendChecked)
-                changeMonthlyChipColor(isMonthlyChecked)
-                changeYearlyChipColor(isYearlyChecked)
+            when (checkedId) {
+                R.id.chipWeekly -> {
+                    populateSalahList(getCurrentWeekDates())
+                    updateUIState("Weekly")
+                }
+                R.id.chipMonthly -> {
+                    populateSalahList(getMonthDatesOfCurrentMonth())
+                    updateUIState("Monthly")
+                }
+                R.id.chipYearly -> {
+                    populateSalahList(getDatesOfCurrentYear())
+                    updateUIState("Yearly")
+                }
             }
-            populateSalahList(getCurrentWeekDates())
-        }
-
-        binding.chipMonthly.setOnClickListener {
-            isWeekendChecked = false
-            isMonthlyChecked = true
-            isYearlyChecked = false
-            if (isMonthlyChecked == true){
-                changeMonthlyChipColor(isMonthlyChecked)
-                changeWeekendChipColor(isWeekendChecked)
-                changeYearlyChipColor(isYearlyChecked)
-            }
-            populateSalahList(getMonthDatesOfCurrentMonth())
-        }
-
-        binding.chipYearly.setOnClickListener {
-            isWeekendChecked = false
-            isMonthlyChecked = false
-            isYearlyChecked = true
-            if (isYearlyChecked == true){
-                changeMonthlyChipColor(isMonthlyChecked)
-                changeWeekendChipColor(isWeekendChecked)
-                changeYearlyChipColor(isYearlyChecked)
-            }
-            populateSalahList(getDatesOfCurrentYear())
         }
 
         startAutoScroll()
@@ -221,11 +201,11 @@ class TrackkerFragment : Fragment() {
 
     private fun changeWeekendChipColor(isChecked:Boolean){
         if (isChecked == true){
-            binding.chipWeekend.chipBackgroundColor= ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.dark_gray))
-            binding.chipWeekend.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white)))
+            binding.chipWeekly.chipBackgroundColor= ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.dark_gray))
+            binding.chipWeekly.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white)))
         }else{
-            binding.chipWeekend.chipBackgroundColor= ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.light_grey))
-            binding.chipWeekend.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.black)))
+            binding.chipWeekly.chipBackgroundColor= ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.light_grey))
+            binding.chipWeekly.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.black)))
         }
     }
 
@@ -247,6 +227,30 @@ class TrackkerFragment : Fragment() {
             binding.chipYearly.chipBackgroundColor= ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.light_grey))
             binding.chipYearly.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.black)))
         }
+    }
+
+    private fun updateUIState(type: String) {
+        // Yahan aap common logic likh sakte hain jo teeno chips ke liye same hai
+        // Material 3 Chips automatically color change kar lete hain checked state par
+        Log.d("SalahTracker", "Selected Filter: $type")
+    }
+
+    private fun applyMagicTouch(view: View) {
+        view.animate()
+            .scaleX(0.92f)
+            .scaleY(0.92f)
+            .setDuration(100)
+            .withEndAction {
+                view.animate()
+                    .scaleX(1.05f)
+                    .scaleY(1.05f)
+                    .setDuration(150)
+                    .setInterpolator(OvershootInterpolator())
+                    .withEndAction {
+                        // 3. Back to normal size
+                        view.animate().scaleX(1f).scaleY(1f).setDuration(100).start()
+                    }.start()
+            }.start()
     }
 
 }

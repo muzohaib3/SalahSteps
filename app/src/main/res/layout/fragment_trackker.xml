@@ -59,40 +59,39 @@
             android:id="@+id/chipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            app:singleSelection="true">
+            android:layout_marginVertical="12dp"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:chipSpacingHorizontal="12dp">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chipWeekend"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/chipWeekly"
+                style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/grey_stroke_rounded_bg"
-                android:checkable="true"
-                android:padding="10dp"
-                android:fontFamily="@font/googlesans_regular"
-                android:text="Weekly" />
+                android:text="Weekly"
+                android:fontFamily="@font/googlesans_medium"
+                app:chipIconEnabled="true"
+                app:chipIcon="@drawable/ic_calendar_today"
+                app:checkedIconVisible="true" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipMonthly"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/grey_stroke_rounded_bg"
-                android:checkable="false"
-                android:padding="10dp"
-                android:text="Monthly" />
+                android:text="Monthly"
+                app:chipIconEnabled="true"
+                app:chipIcon="@drawable/ic_calendar_today" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipYearly"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/grey_stroke_rounded_bg"
-                android:checkable="false"
-                android:padding="10dp"
-                android:text="Yearly" />
+                android:text="Yearly"
+                app:chipIconEnabled="true"
+                app:chipIcon="@drawable/ic_calendar_today" />
 
         </com.google.android.material.chip.ChipGroup>
 

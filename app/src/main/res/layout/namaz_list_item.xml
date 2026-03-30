@@ -1,47 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/llListItem"
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
-    android:background="@color/white"
-    android:elevation="2dp"
-    android:foreground="?android:attr/selectableItemBackground"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginHorizontal="@dimen/_4sdp"
+    android:layout_marginVertical="@dimen/_2sdp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="@dimen/_5sdp"
+    app:cardBackgroundColor="@color/white"
+    app:rippleColor="#15000000">
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="10dp"
-        android:layout_height="50dp"
-        android:background="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llListItem"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="23-03-2025"
-        android:fontFamily="@font/googlesans_medium"
-        android:textSize="16sp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintStart_toEndOf="@id/view1"
-        app:layout_constraintTop_toTopOf="@id/view1"
-        app:layout_constraintBottom_toBottomOf="@id/view1"/>
+        android:paddingEnd="16dp"
+        android:foreground="?android:attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/tvDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thursday"
-        android:fontFamily="@font/googlesans_medium"
-        android:textSize="16sp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintStart_toEndOf="@id/tvDate"
-        app:layout_constraintTop_toTopOf="@id/view1"
-        app:layout_constraintBottom_toBottomOf="@id/view1"/>
+        <View
+            android:id="@+id/view1"
+            android:layout_width="6dp"
+            android:layout_height="0dp"
+            android:background="@color/blue"
+            android:backgroundTint="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginVertical="@dimen/_12sdp"
+            android:layout_marginStart="2dp"/>
 
+        <ImageView
+            android:id="@+id/ivCalendar"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_calendar_today"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/view1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/googlesans_bold"
+            android:text="23 March 2026"
+            android:textColor="@color/grey_008"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDay"
+            app:layout_constraintStart_toEndOf="@id/ivCalendar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tvDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/googlesans_medium"
+            android:text="Thursday"
+            android:textColor="@color/grey_008"
+            android:textSize="13sp"
+            android:letterSpacing="0.05"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvDate"
+            app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:tint="@color/grey_008"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
