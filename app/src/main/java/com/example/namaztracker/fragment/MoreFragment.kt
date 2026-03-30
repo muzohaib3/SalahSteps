@@ -1,0 +1,65 @@
+package com.example.namaztracker.fragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import com.example.namaztracker.R
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.namaztracker.adapter.IslamicInfoTypeAdapter
+import com.example.namaztracker.databinding.FragmentNamazBinding
+import com.example.namaztracker.getClassName
+import com.example.namaztracker.loge
+import com.example.namaztracker.model.TaleemModel
+import com.example.namaztracker.showToast
+
+class MoreFragment : Fragment() {
+
+    private lateinit var binding:FragmentNamazBinding
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentNamazBinding.inflate(inflater, container, false )
+        initViews()
+        return binding.root
+    }
+
+    private fun initViews(){
+
+        val homeItems = listOf(
+            TaleemModel(R.drawable.namaz, "Namaz"),
+            TaleemModel(R.drawable.masnoon_dua, "Masnoon Duaen"),
+            TaleemModel(R.drawable.hadith, "Hadith"),
+            TaleemModel(R.drawable.islamic_faqs, "Islamic FAQ"),
+            TaleemModel(R.drawable.qibla, "Qibla"),
+            TaleemModel(R.drawable.quran, "Quran")
+        )
+
+        try {
+            binding.rvItems.apply {
+                layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
+                adapter = IslamicInfoTypeAdapter(homeItems) { item ->
+
+                    when (item.title) {
+                        "Namaz" -> findNavController().navigate(R.id.action_namaz_to_namazFragment)
+                        "Masnoon Duaen" -> findNavController().navigate(R.id.action_namaz_to_masnoonDuaeinFragment)
+                        "Hadith" -> findNavController().navigate(R.id.action_namaz_to_hadithFragment)
+                        "Islamic FAQ" -> findNavController().navigate(R.id.action_namaz_to_islamicInfoFragment)
+//                        "Qibla" -> /*findNavController().navigate(R.id.qiblaFinderFragment)*/ showToast(requireContext(), "Coming soon")
+                        "Qibla" -> findNavController().navigate(R.id.qiblaFinderFragment)
+                        "Quran" -> findNavController().navigate(R.id.action_namaz_to_quranFragment)
+                    }
+                }
+            }
+        }catch (e:Exception){
+            loge(getClassName(requireContext()),"${e.message}")
+        }
+
+    }
+
+}

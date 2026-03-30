@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/tracker"
+        android:title="Tracker"
+        app:showAsAction="always"
+        android:icon="@drawable/menu"
+        android:iconTint="@color/grey"/>
+    <item android:id="@+id/qaza"
+        android:title="Qaza"
+        app:showAsAction="always"
+        android:icon="@drawable/add"
+        android:iconTint="@color/grey"/>
+    <item android:id="@+id/namaz"
+        android:title="More"
+        app:showAsAction="always"
+        android:icon="@drawable/mosque"
+        android:iconTint="@color/grey"/>
+
+</menu>

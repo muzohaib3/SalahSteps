@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/green_009"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qibla Compass"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Loading location..."
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Compass Container -->
+    <FrameLayout
+        android:id="@+id/compassContainer"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@id/headerLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp">
+
+        <!-- Compass Background -->
+        <ImageView
+            android:id="@+id/ivCompass"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Compass"
+            android:scaleType="centerInside"
+            android:src="@drawable/compass" />
+
+        <!-- Qibla Needle -->
+        <ImageView
+            android:id="@+id/ivNeedle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@drawable/comp_needle"
+            android:scaleType="centerInside"
+            android:src="@drawable/comp_needle" />
+    </FrameLayout>
+
+    <!-- Direction Text -->
+    <TextView
+        android:id="@+id/tvDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/compassContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="0°"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <!-- Info Text -->
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDirection"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Turn your phone to face Mecca"
+        android:textColor="@color/gray"
+        android:textSize="14sp" />
+</RelativeLayout>
