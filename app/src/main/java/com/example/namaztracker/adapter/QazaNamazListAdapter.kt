@@ -37,7 +37,7 @@ class QazaNamazListAdapter(
         val data= list[position]
         with(holder.binding){
             try {
-                tvDate.text = data.date
+                tvDate.text = "Date of action: "+data.date
                 if (data != null && data.fajr == 1 && data.zuhr == 1 && data.asr == 1 && data.maghrib == 1 && data.isha == 1){
 
                 }else{

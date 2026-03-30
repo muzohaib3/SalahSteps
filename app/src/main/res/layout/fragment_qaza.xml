@@ -43,42 +43,124 @@
             tools:listitem="@layout/trackker_layout_item" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/legendCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="5dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
-            app:cardElevation="5dp">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginHorizontal="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="@dimen/_5sdp"
+            app:cardBackgroundColor="#F8F9FA">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <ImageView
-                    android:id="@+id/ivIcon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="10dp"
-                    android:src="@drawable/mosque_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Understanding Status"
+                    android:textSize="11sp"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.1"
+                    android:textColor="#9E9E9E"
+                    android:fontFamily="@font/googlesans_bold"
+                    android:layout_marginBottom="12dp"/>
 
                 <TextView
                     android:id="@+id/tvNamazCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/googlesans_medium"
-                    android:text="15"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:layout_gravity="start"
+                    android:text="Total qaza namaz : 15"
                     app:layout_constraintBottom_toBottomOf="@id/ivIcon"
                     app:layout_constraintStart_toEndOf="@+id/ivIcon"
                     app:layout_constraintTop_toTopOf="@id/ivIcon" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:backgroundTint="#4CAF50" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Ada (Done)"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/googlesans_medium"
+                            android:textColor="#2E7D32" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="20dp"
+                        android:background="#E0E0E0"
+                        android:layout_marginHorizontal="8dp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:backgroundTint="#EF5350" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Qaza (Pending)"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/googlesans_medium"
+                            android:textColor="#C62828" />
+                    </LinearLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#EEEEEE"/>
+
+                <TextView
+                    android:id="@+id/tvInspirationNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="✨ Consistency builds spiritual discipline."
+                    android:textSize="11sp"
+                    android:alpha="0.8"
+                    android:gravity="center"
+                    android:fontFamily="@font/googlesans_regular"
+                    android:textColor="#616161"/>
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -87,7 +169,6 @@
             android:id="@+id/rvQazaNamaz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:paddingBottom="40dp"
             tools:listitem="@layout/qaza_namaz_list_item"/>
 

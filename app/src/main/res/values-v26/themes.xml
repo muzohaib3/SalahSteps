@@ -1,14 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.NamazTracker" parent="Theme.Material3.DayNight.NoActionBar">
-    </style>
-
-    <style name="Theme.NamazTracker" parent="Base.Theme.NamazTracker" />
-
-    <style name="FullscreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
     <style name="NamazChipStyle">
         <item name="android:layout_width">0dp</item>
@@ -22,5 +13,4 @@
         <item name="layout_constraintWidth_default">percent</item>
         <item name="layout_constraintWidth_percent">0.18</item>
     </style>
-
 </resources>
