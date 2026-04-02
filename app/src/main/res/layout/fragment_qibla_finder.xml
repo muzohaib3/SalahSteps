@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@color/green_009"
+        android:background="@drawable/bg_corporate_header"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">

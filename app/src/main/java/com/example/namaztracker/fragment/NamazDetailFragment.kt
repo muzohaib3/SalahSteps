@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +20,7 @@ import com.example.namaztracker.architecture.database.AppDB
 import com.example.namaztracker.architecture.viewModel.MainViewModel
 import com.example.namaztracker.databinding.FragmentNamazDetailBinding
 import com.example.namaztracker.loge
+import com.example.namaztracker.logi
 import com.example.namaztracker.model.NamazItemModel
 import com.example.namaztracker.model.NamazModel
 import com.example.namaztracker.model.SalahDataModel
@@ -36,6 +38,7 @@ class NamazDetailFragment : Fragment() {
     var isDateMatched = false
     private lateinit var viewModel:MainViewModel
     private val TAG = this::class.simpleName
+    private val isUpdateMode = false
     private val scope = CoroutineScope(Dispatchers.IO)
     private val mainThread = CoroutineScope(Dispatchers.Main)
 
@@ -54,6 +57,7 @@ class NamazDetailFragment : Fragment() {
     private fun initViews(){
 
         try {
+            isUpdateMode()
             val data = returnDayAndDate()
             val day = data.first
             val date = data.second
@@ -91,8 +95,11 @@ class NamazDetailFragment : Fragment() {
 
     private fun setAdapter(list:List<NamazItemModel>, isDateMatched:Boolean, salahModel:SalahDataModel?){
         binding.rvNamaz.apply {
-            adapter = NamazMarkingAdapter(requireContext(),list, viewModel, isDateMatched, salahModel)
+            adapter = NamazMarkingAdapter(requireContext(),list, viewModel, isDateMatched, salahModel, false)
             layoutManager = LinearLayoutManager(requireContext())
+            val resId = R.anim.layout_animation_fall_down
+            val animation = AnimationUtils.loadLayoutAnimation(context, resId)
+            layoutAnimation = animation
         }
     }
 
@@ -155,5 +162,19 @@ class NamazDetailFragment : Fragment() {
         val list = NamazItemModel().getNamazList()
         return list
     }
+
+    private fun isUpdateMode():Boolean{
+        var isUpdateMode = false
+        val argument = arguments
+        if (argument != null){
+             isUpdateMode = argument.getBoolean("isUpdateMode", false)
+            logi(TAG!!, "isUpdateMode: $isUpdateMode flag")
+        }
+        return isUpdateMode
+    }
+
+
+
+
 
 }

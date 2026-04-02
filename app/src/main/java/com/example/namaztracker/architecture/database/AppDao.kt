@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
+import com.example.namaztracker.model.NamazItemModel
 import com.example.namaztracker.model.SalahDataModel
 
 @Dao
@@ -36,5 +38,13 @@ interface AppDao {
         (CASE WHEN isha = 0 THEN 1 ELSE 0 END)
 """)
     fun getTotalMissedNamaz(): List<SalahDataModel>
+
+
+    @Query("""
+    UPDATE salah_record SET fajr = :fajr,zuhr = :zuhr,
+    asr = :asr, maghrib = :maghrib,isha = :isha, date = :date WHERE id = :id """)
+    fun updateSalahRecord(
+        id: Int, fajr: Int, zuhr: Int, asr: Int, maghrib: Int, isha: Int, date: String
+    )
 
 }

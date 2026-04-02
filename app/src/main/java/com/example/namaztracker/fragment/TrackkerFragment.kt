@@ -230,8 +230,6 @@ class TrackkerFragment : Fragment() {
     }
 
     private fun updateUIState(type: String) {
-        // Yahan aap common logic likh sakte hain jo teeno chips ke liye same hai
-        // Material 3 Chips automatically color change kar lete hain checked state par
         Log.d("SalahTracker", "Selected Filter: $type")
     }
 

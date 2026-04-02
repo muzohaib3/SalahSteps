@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import com.example.namaztracker.R
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.fragment.app.Fragment
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.namaztracker.adapter.IslamicInfoTypeAdapter
 import com.example.namaztracker.databinding.FragmentNamazBinding
+import com.example.namaztracker.fragment.bottomsheet.GenericBottomSheet
+import com.example.namaztracker.fragment.bottomsheet.GenericModel
 import com.example.namaztracker.getClassName
 import com.example.namaztracker.loge
 import com.example.namaztracker.model.TaleemModel
@@ -56,10 +59,30 @@ class MoreFragment : Fragment() {
                     }
                 }
             }
+            val resId = R.anim.layout_animation_fall_down
+            val animation = AnimationUtils.loadLayoutAnimation(context, resId)
+            binding.rvItems.layoutAnimation = animation
+
         }catch (e:Exception){
             loge(getClassName(requireContext()),"${e.message}")
         }
 
+        val listItems = arrayListOf(
+            GenericModel("Day Theme"),
+            GenericModel("Night Theme"),
+            GenericModel("Select Language"),
+            GenericModel("Font Size"),
+            GenericModel("Notification Sound")
+        )
+        binding.ivMenu.setOnClickListener {
+            val bottomSheet = GenericBottomSheet.newInstance(listItems){ item->
+                Toast.makeText(requireContext(), "Selected: ${item.name}", Toast.LENGTH_SHORT).show()
+            }
+            bottomSheet.show(childFragmentManager, "")
+        }
+
     }
+
+
 
 }
