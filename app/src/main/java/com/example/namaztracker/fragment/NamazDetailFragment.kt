@@ -57,7 +57,7 @@ class NamazDetailFragment : Fragment() {
     private fun initViews(){
 
         try {
-            isUpdateMode()
+            isUpdateOrSaveMode()
             val data = returnDayAndDate()
             val day = data.first
             val date = data.second
@@ -131,7 +131,8 @@ class NamazDetailFragment : Fragment() {
                     "maghribSalah ${viewModel.maghribSalah} " +
                     "ishaSalah ${viewModel.ishaSalah}")
 
-            val salahModel = SalahDataModel(viewModel.fajrSalah, viewModel.zuhrSalah, viewModel.asrSalah, viewModel.maghribSalah, viewModel.ishaSalah, model.date)
+            val salahModel = SalahDataModel(viewModel.fajrSalah, viewModel.zuhrSalah,
+                viewModel.asrSalah, viewModel.maghribSalah, viewModel.ishaSalah, model.date)
 
             scope.launch {
                 db.insertSalah(salahModel)
@@ -163,14 +164,16 @@ class NamazDetailFragment : Fragment() {
         return list
     }
 
-    private fun isUpdateMode():Boolean{
-        var isUpdateMode = false
-        val argument = arguments
-        if (argument != null){
-             isUpdateMode = argument.getBoolean("isUpdateMode", false)
-            logi(TAG!!, "isUpdateMode: $isUpdateMode flag")
+    private fun isUpdateOrSaveMode(){
+        val isUpdateMode = arguments?.getBoolean("isUpdate") ?: false
+
+        if (isUpdateMode) {
+            binding.tvToolbarHeader.text = "Update Your Salah"
+            binding.btSave.text = "Update"
+        } else {
+            binding.tvToolbarHeader.text = "Mark New Salah"
+            binding.btSave.text = "Save"
         }
-        return isUpdateMode
     }
 
 

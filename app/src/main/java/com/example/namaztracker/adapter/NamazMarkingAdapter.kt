@@ -19,7 +19,7 @@ class NamazMarkingAdapter(
     private val viewModel: MainViewModel,
     val isDateMatched:Boolean,
     val sModel:SalahDataModel?,
-    val isUpdateMode:Boolean?
+    val isUpdateMode:Boolean? = false
 ) : RecyclerView.Adapter<NamazMarkingAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){

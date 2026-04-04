@@ -40,11 +40,7 @@ interface AppDao {
     fun getTotalMissedNamaz(): List<SalahDataModel>
 
 
-    @Query("""
-    UPDATE salah_record SET fajr = :fajr,zuhr = :zuhr,
-    asr = :asr, maghrib = :maghrib,isha = :isha, date = :date WHERE id = :id """)
-    fun updateSalahRecord(
-        id: Int, fajr: Int, zuhr: Int, asr: Int, maghrib: Int, isha: Int, date: String
-    )
+    @Update
+    fun updateSalahRecord(salahModel: SalahDataModel)
 
 }

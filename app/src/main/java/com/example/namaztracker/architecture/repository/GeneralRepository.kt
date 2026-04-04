@@ -6,6 +6,6 @@ interface GeneralRepository {
 
     fun saveSalah(salahDataModel: SalahDataModel)
 
-    fun updateSalah(id: Int, fajr: Int, zuhr: Int, asr: Int, maghrib: Int, isha: Int, date: String)
+    fun updateSalah(salahDataModel: SalahDataModel)
 
 }

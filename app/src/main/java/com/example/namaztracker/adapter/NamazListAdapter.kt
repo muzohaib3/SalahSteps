@@ -69,16 +69,11 @@ class NamazListAdapter(
 
                 llListItem.setOnClickListener { view ->
                     val model = NamazModel(date = data, day = getDayName(data))
-                    val bundle = bundleOf("model" to model)
-                    when
-                    {
-                        salahModel != null ->{
-                            view.findNavController().navigate(R.id.action_tracker_to_namazDetail, bundle)
-                        }
-                        else->{
-                            view.findNavController().navigate(R.id.action_tracker_to_namazDetail, bundle)
-                        }
-                    }
+                    val bundle = bundleOf(
+                        "model" to model,
+                        "isUpdate" to (salahModel != null)
+                    )
+                    view.findNavController().navigate(R.id.action_tracker_to_namazDetail, bundle)
                 }
 
             } catch (e: Exception) {
