@@ -27,7 +27,6 @@ class NamazFragment : Fragment() {
 
     private var _binding: FragmentNamazInfoBinding? = null
     private val binding get() = _binding!!
-    private var action = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,19 +46,13 @@ class NamazFragment : Fragment() {
                 findNavController().navigateUp()
             }
 
-//            rvNamaz.apply {
-//                adapter = NamazInfoAdapter(NamazItemModel().getNamazTypeList())
-//                layoutManager = LinearLayoutManager(requireContext())
-//            }
-
             try {
                 val namazItems = listOf(
                     TaleemModel(R.drawable.namaz, "Core Steps"),
                     TaleemModel(R.drawable.tnc, "Conditions"), // Shariat-e-Namaz
                     TaleemModel(R.drawable.water, "Wudu Guide"),
-                    TaleemModel(R.drawable.counter, "Rakat Table"),
-                    TaleemModel(R.drawable.shape, "Prayer Types"), // Fard, Sunnat, Nafl
-                    TaleemModel(R.drawable.remove, "Mistakes & Sahw"),
+                    TaleemModel(R.drawable.countdown, "Rakat Table"),
+                    TaleemModel(R.drawable.shape, "Prayer Types"),
                     TaleemModel(R.drawable.masnoon_dua, "Namaz Duas")
                 )
 
@@ -68,19 +61,15 @@ class NamazFragment : Fragment() {
                     adapter = IslamicInfoTypeAdapter(namazItems) { item ->
 
                         val action = when (item.title) {
-//                            "Conditions" -> findNavController().navigate(R.id.action_namaz_to_masnoonDuaeinFragment)
-//                            "Rakat Table" -> findNavController().navigate(R.id.action_namaz_to_islamicInfoFragment)
-//                            "Prayer Types" -> findNavController().navigate(R.id.qiblaFinderFragment)
-//                            "Namaz Duas" -> findNavController().navigate(R.id.action_namaz_to_quranFragment)
-
-                            "Core Steps" ->  {
-                                 "core_salah"
-                            }
-                            "Wudu Guide" ->{
-                                "wudu_guide"
-                            }
+                            "Core Steps" ->  { "core_salah"}
+                            "Wudu Guide" ->{"wudu_guide"}
+                            "Conditions"->{"conditions"}
+                            "Prayer Types"->{"p_types"}
+                            "Rakat Table"->{"rakat"}
+                            "Namaz Duas"->{"duas"}
                             else->{""}
                         }
+
                         if (action.isNotEmpty() ){
                             var bundle = bundleOf("action" to action)
                             findNavController().navigate(R.id.namazGuideFragment, bundle)

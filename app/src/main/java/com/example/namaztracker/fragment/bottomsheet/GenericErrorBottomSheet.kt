@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.namaztracker.R
-import com.example.namaztracker.databinding.FragmentGenericBottomSheetBinding
 import com.example.namaztracker.databinding.FragmentGenericSuccessBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class GenericErrorBottomSheet : BottomSheetDialogFragment() {
+class GenericErrorBottomSheet(val message:String) : BottomSheetDialogFragment() {
 
     private lateinit var _binding: FragmentGenericSuccessBottomSheetBinding
     private val binding get() = _binding
@@ -39,6 +37,7 @@ class GenericErrorBottomSheet : BottomSheetDialogFragment() {
     private fun setupUI() {
         binding.btnOk.setOnClickListener { dismiss() }
 
+        binding.tvMessage.text = message
         dialog?.let {
             val bottomSheet = it.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
             val behavior = BottomSheetBehavior.from(bottomSheet)

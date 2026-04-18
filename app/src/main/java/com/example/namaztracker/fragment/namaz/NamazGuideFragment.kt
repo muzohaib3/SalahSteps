@@ -11,6 +11,7 @@ import com.example.namaztracker.R
 import com.example.namaztracker.adapter.NamazStepModel
 import com.example.namaztracker.adapter.NamazStepsAdapter
 import com.example.namaztracker.databinding.FragmentNamazGuideBinding
+import com.example.namaztracker.logi
 import com.example.namaztracker.model.NamazGuide
 import com.example.namaztracker.model.NamazModel
 
@@ -30,19 +31,28 @@ class NamazGuideFragment : Fragment() {
 
     private fun setAdapter(){
 
-        action = arguments?.getString("action").toString()
+        runCatching {
+            action = arguments?.getString("action").toString()
 
-        when(action){
-            "core_salah" -> setAdapter(NamazGuide.namazSteps)
-            "wudu_guide" -> setAdapter(NamazGuide.wuduSteps)
+            when(action){
+                "core_salah" -> setAdapter(NamazGuide.namazSteps)
+                "wudu_guide" -> setAdapter(NamazGuide.wuduSteps)
+                "conditions" -> setAdapter(NamazGuide.namazConditionsList)
+                "p_types" -> setAdapter(NamazGuide.prayerTypesList)
+                "rakat" -> setAdapter(NamazGuide.prayerTypesDetailedList)
+                "duas" -> setAdapter(NamazGuide.namazDuasStepByStep)
+            }
+
+
+
+            binding.tvToolbarHeader.text = "Salah Guide"
+            binding.btBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
+        }.onFailure { it->
+            logi(""+this::class.simpleName, "exception: ${it.message}")
         }
 
-
-
-        binding.tvToolbarHeader.text = "Salah Guide"
-        binding.btBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
 
     }
 

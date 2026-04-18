@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.namaztracker.adapter.IslamicInfoTypeAdapter
 import com.example.namaztracker.databinding.FragmentNamazBinding
 import com.example.namaztracker.fragment.bottomsheet.GenericBottomSheet
+import com.example.namaztracker.fragment.bottomsheet.GenericErrorBottomSheet
 import com.example.namaztracker.fragment.bottomsheet.GenericModel
 import com.example.namaztracker.getClassName
+import com.example.namaztracker.isOnWifi
 import com.example.namaztracker.loge
 import com.example.namaztracker.model.TaleemModel
 import com.example.namaztracker.showToast
@@ -56,7 +58,14 @@ class MoreFragment : Fragment() {
                         "Islamic FAQ" -> findNavController().navigate(R.id.action_namaz_to_islamicInfoFragment)
 //                        "Qibla" -> /*findNavController().navigate(R.id.qiblaFinderFragment)*/ showToast(requireContext(), "Coming soon")
                         "Qibla" -> findNavController().navigate(R.id.qiblaFinderFragment)
-                        "Quran" -> findNavController().navigate(R.id.action_namaz_to_quranFragment)
+                        "Quran" -> {
+                            if(requireContext().isOnWifi()){
+                                findNavController().navigate(R.id.action_namaz_to_quranFragment)
+                            }else{
+                                val errorSheet = GenericErrorBottomSheet("please turn on your internet")
+                                errorSheet.show(childFragmentManager, "")
+                            }
+                        }
                     }
                 }
             }

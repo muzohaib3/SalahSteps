@@ -67,14 +67,6 @@ class MasnoonDuaAdapter(
                 it.context.startActivity(Intent.createChooser(intent, "Share Dua"))
             }
 
-            btnAudio.setOnClickListener {
-//                MediaPlayer().apply {
-//                    setDataSource(dua.audioUrl)   // audio URL stored in model
-//                    prepare()
-//                    start()
-//                }
-                Toast.makeText(it.context, "No audio available for this Dua", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 

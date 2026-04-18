@@ -79,7 +79,7 @@ class NamazListAdapter(
 
                     if (salahModel !=  null){
 //                        view.findNavController().navigate(R.id.action_tracker_to_namazDetailStatusFragment, bundle)
-                        val sheet = GenericErrorBottomSheet()
+                        val sheet = GenericErrorBottomSheet("your salah cannot be updated")
                         val activity = context as? FragmentActivity
                         activity?.supportFragmentManager?.let { manager ->
                             sheet.show(manager, "")

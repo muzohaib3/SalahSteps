@@ -1,18 +1,18 @@
 package com.example.namaztracker
 
 import android.content.Context
-import android.os.Build
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.FragmentManager
 import com.google.gson.Gson
-import java.io.IOException
+
 
 fun loge(tag:String, msg:Any?){
     Log.e(tag, "e.message = "+msg.toString())
@@ -69,4 +69,14 @@ fun <T> String.toModel(modelClass: Class<T>): T? {
 
 fun View.isVisible(show: Boolean) {
     this.visibility = if (show) View.VISIBLE else View.GONE
+}
+
+fun Context.isOnWifi(): Boolean {
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+    connectivityManager ?: return false
+    val network: Network = connectivityManager.activeNetwork ?: return false
+    val capabilities = connectivityManager.getNetworkCapabilities(network)
+    return capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+            || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
+
 }
