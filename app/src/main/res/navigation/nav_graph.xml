@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_tracker_to_namazDetail"
             app:destination="@id/namazDetail" />
+        <action
+            android:id="@+id/action_tracker_to_namazDetailStatusFragment"
+            app:destination="@id/namazDetailStatusFragment" />
     </fragment>
 
     <fragment
@@ -38,6 +41,9 @@
         <action
             android:id="@+id/action_namaz_to_quranFragment"
             app:destination="@id/quranFragment" />
+        <action
+            android:id="@+id/action_namaz_to_namazGuideFragment"
+            app:destination="@id/namazGuideFragment" />
     </fragment>
 
     <fragment
@@ -84,5 +90,15 @@
         android:name="com.example.namaztracker.fragment.islamic_info.QuranFragment"
         android:label="fragment_quran"
         tools:layout="@layout/fragment_quran" />
+    <fragment
+        android:id="@+id/namazDetailStatusFragment"
+        android:name="com.example.namaztracker.fragment.NamazDetailStatusFragment"
+        android:label="NamazDetailStatusFragment"
+        tools:layout="@layout/fragment_namaz_detail_status"/>
+    <fragment
+        android:id="@+id/namazGuideFragment"
+        android:name="com.example.namaztracker.fragment.namaz.NamazGuideFragment"
+        android:label="fragment_namaz_guide"
+        tools:layout="@layout/fragment_namaz_guide" />
 
 </navigation>

@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namaztracker.R
 import com.example.namaztracker.architecture.database.AppDB
 import com.example.namaztracker.architecture.database.AppDao
 import com.example.namaztracker.databinding.NamazListItemBinding
+import com.example.namaztracker.fragment.bottomsheet.GenericErrorBottomSheet
 import com.example.namaztracker.loge
 import com.example.namaztracker.model.NamazModel
+import com.example.namaztracker.showToast
 import java.util.Locale
 
 class NamazListAdapter(
@@ -73,7 +76,18 @@ class NamazListAdapter(
                         "model" to model,
                         "isUpdate" to (salahModel != null)
                     )
-                    view.findNavController().navigate(R.id.action_tracker_to_namazDetail, bundle)
+
+                    if (salahModel !=  null){
+//                        view.findNavController().navigate(R.id.action_tracker_to_namazDetailStatusFragment, bundle)
+                        val sheet = GenericErrorBottomSheet()
+                        val activity = context as? FragmentActivity
+                        activity?.supportFragmentManager?.let { manager ->
+                            sheet.show(manager, "")
+                        }
+                    }
+                    else{
+                        view.findNavController().navigate(R.id.action_tracker_to_namazDetail, bundle)
+                    }
                 }
 
             } catch (e: Exception) {
@@ -102,4 +116,3 @@ class NamazListAdapter(
 
 
 }
-

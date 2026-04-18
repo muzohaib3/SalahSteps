@@ -26,23 +26,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var maghribSalah:Int = 0
     var ishaSalah:Int = 0
 
-    fun updateSalah(id: Int, date: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val model = SalahDataModel(
-                fajr = fajrSalah,
-                zuhr = zuhrSalah,
-                asr = asrSalah,
-                maghrib = maghribSalah,
-                isha = ishaSalah,
-                date = date
-            )
 
-            if (id > 0) {
-                model.id = id
-                repository.appDao.updateSalahRecord(model)
-            } else {
-                repository.appDao.insertSalah(model)
-            }
+    fun updateSalah(fajr:Int , zuhr:Int, asr:Int , maghrib:Int, isha :Int, id:Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateSalah(fajr, zuhr, asr, maghrib, isha, id)
         }
     }
 

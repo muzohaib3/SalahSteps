@@ -19,6 +19,7 @@ import com.example.namaztracker.adapter.NamazMarkingAdapter
 import com.example.namaztracker.architecture.database.AppDB
 import com.example.namaztracker.architecture.viewModel.MainViewModel
 import com.example.namaztracker.databinding.FragmentNamazDetailBinding
+import com.example.namaztracker.getClassName
 import com.example.namaztracker.loge
 import com.example.namaztracker.logi
 import com.example.namaztracker.model.NamazItemModel
@@ -38,9 +39,9 @@ class NamazDetailFragment : Fragment() {
     var isDateMatched = false
     private lateinit var viewModel:MainViewModel
     private val TAG = this::class.simpleName
-    private val isUpdateMode = false
     private val scope = CoroutineScope(Dispatchers.IO)
     private val mainThread = CoroutineScope(Dispatchers.Main)
+    private var isUpdateMode:Boolean? = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +58,11 @@ class NamazDetailFragment : Fragment() {
     private fun initViews(){
 
         try {
+
+            isUpdateMode = arguments?.getBoolean("isUpdate") ?: false
             isUpdateOrSaveMode()
+//            onClickItem(binding.root)
+
             val data = returnDayAndDate()
             val day = data.first
             val date = data.second
@@ -67,35 +72,35 @@ class NamazDetailFragment : Fragment() {
 
             val salahModel = db.getRecordAccDate(date)
 
-            if (salahModel != null)
-            {
-                if (salahModel.date == date){
-                    isDateMatched = true
-                }else{
-                    isDateMatched = false
-                }
-                binding.btSave.isEnabled = false
-                binding.btSave.setBackgroundResource(R.drawable.grey_squared_circle_bg)
-                binding.btSave.alpha = 0.7F
+            if (salahModel != null) {
+                if (salahModel.date == date){ isDateMatched = true }
+                else{ isDateMatched = false }
                 setAdapter(setSalahList(), isDateMatched, salahModel)
             }
             else{
                 binding.btSave.isEnabled = true
                 setAdapter(setSalahList(), isDateMatched, null)
+
+            }
+
+            logi(getClassName(requireContext()), "salahModel == null\n setSalahList() --> ${setSalahList()}")
+
+            binding.btSave.setOnClickListener{
+                if (isUpdateMode!!){
+                    updateRecord(viewModel.fajrSalah, viewModel.zuhrSalah, viewModel.asrSalah, viewModel.maghribSalah, viewModel.ishaSalah, salahModel?.id!!)
+                }else{
+                    addRecord()
+                }
             }
 
         }catch (e:Exception){
             loge("${this::class.simpleName}", "exception --> ${e.message}")
         }
-
-        binding.btSave.setOnClickListener {
-            addRecord()
-        }
     }
 
     private fun setAdapter(list:List<NamazItemModel>, isDateMatched:Boolean, salahModel:SalahDataModel?){
         binding.rvNamaz.apply {
-            adapter = NamazMarkingAdapter(requireContext(),list, viewModel, isDateMatched, salahModel, false)
+            adapter = NamazMarkingAdapter(requireContext(),list, viewModel, isDateMatched, salahModel)
             layoutManager = LinearLayoutManager(requireContext())
             val resId = R.anim.layout_animation_fall_down
             val animation = AnimationUtils.loadLayoutAnimation(context, resId)
@@ -124,12 +129,8 @@ class NamazDetailFragment : Fragment() {
 
         if (viewModel != null){
 
-            Log.i(TAG, "result --> " +
-                    "fajrSalah ${viewModel.fajrSalah}" +
-                    "zuhrSalah ${viewModel.zuhrSalah} " +
-                    "asrSalah ${viewModel.asrSalah} " +
-                    "maghribSalah ${viewModel.maghribSalah} " +
-                    "ishaSalah ${viewModel.ishaSalah}")
+            Log.i(TAG, "result --> addRecord " +
+                    "fajrSalah ${viewModel.fajrSalah} zuhrSalah ${viewModel.zuhrSalah} asrSalah ${viewModel.asrSalah}  maghribSalah ${viewModel.maghribSalah}  ishaSalah ${viewModel.ishaSalah}")
 
             val salahModel = SalahDataModel(viewModel.fajrSalah, viewModel.zuhrSalah,
                 viewModel.asrSalah, viewModel.maghribSalah, viewModel.ishaSalah, model.date)
@@ -165,15 +166,20 @@ class NamazDetailFragment : Fragment() {
     }
 
     private fun isUpdateOrSaveMode(){
-        val isUpdateMode = arguments?.getBoolean("isUpdate") ?: false
 
-        if (isUpdateMode) {
+        if (isUpdateMode!!) {
             binding.tvToolbarHeader.text = "Update Your Salah"
             binding.btSave.text = "Update"
         } else {
             binding.tvToolbarHeader.text = "Mark New Salah"
             binding.btSave.text = "Save"
         }
+    }
+
+    private fun updateRecord(fajr:Int, zuhr:Int, asr:Int, maghrib:Int, isha:Int, id:Int){
+        logi(getClassName(requireContext()),"updateRecord --> fajr: $fajr , zuhr: $zuhr, asr: $asr, maghrib: $maghrib, isha:$isha")
+        viewModel.updateSalah(fajr, zuhr, asr, maghrib, isha, id)
+        findNavController().popBackStack()
     }
 
 

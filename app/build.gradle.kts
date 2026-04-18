@@ -75,6 +75,10 @@ dependencies {
     //DOTS INDICATOR
     implementation("com.tbuonomo:dotsindicator:4.3")
 
+    // Coroutines for async operations
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
     /** gson **/
     implementation("com.google.code.gson:gson:2.10.1")
 

@@ -7,6 +7,7 @@ import com.example.namaztracker.R
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -70,12 +71,20 @@ class MoreFragment : Fragment() {
         val listItems = arrayListOf(
             GenericModel("Day Theme"),
             GenericModel("Night Theme"),
-            GenericModel("Select Language"),
-            GenericModel("Font Size"),
-            GenericModel("Notification Sound")
+//            GenericModel("Select Language"),
+//            GenericModel("Font Size"),
+//            GenericModel("Notification Sound")
         )
         binding.ivMenu.setOnClickListener {
             val bottomSheet = GenericBottomSheet.newInstance(listItems){ item->
+                when(item.name){
+                    "Day Theme"->{
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    }
+                    "Night Theme"->{
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    }
+                }
                 Toast.makeText(requireContext(), "Selected: ${item.name}", Toast.LENGTH_SHORT).show()
             }
             bottomSheet.show(childFragmentManager, "")

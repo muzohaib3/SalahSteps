@@ -4,8 +4,8 @@ import com.example.namaztracker.model.SalahDataModel
 
 interface GeneralRepository {
 
-    fun saveSalah(salahDataModel: SalahDataModel)
+    fun saveSalah(salahDataModel: SalahDataModel): Long
 
-    fun updateSalah(salahDataModel: SalahDataModel)
+    fun updateSalah(fajr:Int , zuhr:Int, asr:Int , maghrib:Int, isha :Int, id:Int):Int
 
 }

@@ -32,76 +32,53 @@ class NamazMarkingAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with(holder.binding){
+        with(holder.binding) {
 
-            val data= list[position]
+            val data = list[position]
+
+            // ---- set UI
             ivIcon.setImageResource(data.drawableItem)
             tvNamazName.text = data.name
             tvTime.text = data.time
 
-            viewModel.fajrSalah = 0
-            viewModel.zuhrSalah = 0
-            viewModel.asrSalah = 0
-            viewModel.maghribSalah = 0
-            viewModel.ishaSalah = 0
+            // ---- remove listener before setting checked state
+            toggleNamaz.setOnCheckedChangeListener(null)
 
-            when(data.name)
-            {
-                "Fajr"->{
-                    toggleNamaz.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.fajrSalah = if (isChecked) 1 else 0
+            if (isDateMatched && sModel != null) {
+                when (data.name) {
+                    "Fajr" -> {
+                        toggleNamaz.isChecked = sModel.fajr == 1
+                        viewModel.fajrSalah = sModel.fajr
                     }
-                }
-                "Zuhr"->{
-                    toggleNamaz.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.zuhrSalah = if (isChecked) 1 else 0
+                    "Zuhr" -> {
+                        toggleNamaz.isChecked = sModel.zuhr == 1
+                        viewModel.zuhrSalah = sModel.zuhr
                     }
-                }
-                "Asr"->{
-                    toggleNamaz.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.asrSalah = if (isChecked) 1 else 0
+                    "Asr" -> {
+                        toggleNamaz.isChecked = sModel.asr == 1
+                        viewModel.asrSalah = sModel.asr
                     }
-                }
-                "Maghrib"->{
-                    toggleNamaz.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.maghribSalah = if (isChecked) 1 else 0
+                    "Maghrib" -> {
+                        toggleNamaz.isChecked = sModel.maghrib == 1
+                        viewModel.maghribSalah = sModel.maghrib
                     }
-                }
-                "Isha"->{
-                    toggleNamaz.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.ishaSalah = if (isChecked) 1 else 0
-                    }
-                }
-
-            }
-
-            logi("NamazMarkingAdapter", "fajr = ${viewModel.fajrSalah}, zuhr =  ${viewModel.zuhrSalah}" +
-                    ",asr = ${viewModel.asrSalah}, maghrib= ${viewModel.maghribSalah}, isha = ${viewModel.ishaSalah}")
-
-            if (isDateMatched && sModel != null)
-            {
-                when(data.name){
-                    "Fajr"->{
-                        if (sModel.fajr == 1) toggleNamaz.isChecked = true else toggleNamaz.isChecked = false
-                    }
-                    "Zuhr"->{
-                        if (sModel.zuhr == 1) toggleNamaz.isChecked = true else toggleNamaz.isChecked = false
-                    }
-                    "Asr"->{
-                        if (sModel.asr == 1) toggleNamaz.isChecked = true else toggleNamaz.isChecked = false
-                    }
-                    "Maghrib"->{
-                        if (sModel.maghrib == 1) toggleNamaz.isChecked = true else toggleNamaz.isChecked = false
-                    }
-                    "Isha"->{
-                        if (sModel.isha == 1) toggleNamaz.isChecked = true else toggleNamaz.isChecked = false
+                    "Isha" -> {
+                        toggleNamaz.isChecked = sModel.isha == 1
+                        viewModel.ishaSalah = sModel.isha
                     }
                 }
             }
-            else{
-                logi("NamazMarkingAdapter","model is null")
-            }
 
+            // ---- Now add listener back
+            toggleNamaz.setOnCheckedChangeListener { _, isChecked ->
+                when (data.name) {
+                    "Fajr" -> viewModel.fajrSalah = if (isChecked) 1 else 0
+                    "Zuhr" -> viewModel.zuhrSalah = if (isChecked) 1 else 0
+                    "Asr" -> viewModel.asrSalah = if (isChecked) 1 else 0
+                    "Maghrib" -> viewModel.maghribSalah = if (isChecked) 1 else 0
+                    "Isha" -> viewModel.ishaSalah = if (isChecked) 1 else 0
+                }
+            }
         }
     }
 

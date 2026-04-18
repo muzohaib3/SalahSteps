@@ -7,6 +7,7 @@ class GeneralRepositoryImpl(val appDao: AppDao) :GeneralRepository {
 
     override fun saveSalah(salahDataModel: SalahDataModel) = appDao.insertSalah(salahDataModel)
 
-    override fun updateSalah(salahDataModel: SalahDataModel) = appDao.updateSalahRecord(salahModel = salahDataModel)
+    override fun updateSalah(fajr:Int , zuhr:Int, asr:Int , maghrib:Int, isha :Int, id:Int) =
+        appDao.updateSalah(fajr, zuhr, asr, maghrib, isha, id)
 
 }

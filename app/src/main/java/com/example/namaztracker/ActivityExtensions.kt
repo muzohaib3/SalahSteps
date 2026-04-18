@@ -66,3 +66,7 @@ fun <T> String.toModel(modelClass: Class<T>): T? {
         null
     }
 }
+
+fun View.isVisible(show: Boolean) {
+    this.visibility = if (show) View.VISIBLE else View.GONE
+}

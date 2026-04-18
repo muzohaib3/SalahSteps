@@ -108,6 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:paddingBottom="20dp"
+            android:layoutAnimation="@anim/layout_animation_fade_in"
             tools:listitem="@layout/namaz_list_item" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

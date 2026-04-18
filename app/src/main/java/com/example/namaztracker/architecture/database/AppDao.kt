@@ -12,7 +12,7 @@ import com.example.namaztracker.model.SalahDataModel
 interface AppDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertSalah(salahDataModel: SalahDataModel)
+    fun insertSalah(salahDataModel: SalahDataModel): Long
 
     @Query("SELECT * FROM salah_record WHERE date = :date")
     fun getRecordAccDate(date:String):SalahDataModel?
@@ -40,7 +40,7 @@ interface AppDao {
     fun getTotalMissedNamaz(): List<SalahDataModel>
 
 
-    @Update
-    fun updateSalahRecord(salahModel: SalahDataModel)
+    @Query("UPDATE salah_record SET fajr = :fajr ,zuhr = :zuhr ,asr = :asr, maghrib = :maghrib, isha = :isha WHERE id = :id;")
+    fun updateSalah(fajr:Int , zuhr:Int, asr:Int , maghrib:Int, isha :Int, id:Int): Int
 
 }

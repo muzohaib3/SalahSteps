@@ -178,13 +178,13 @@ class TrackkerFragment : Fragment() {
             if (namazTrackkerAdapter.itemCount > 0) {
                 currentPosition = (currentPosition + 1) % namazTrackkerAdapter.itemCount
                 binding.llRvHeader.smoothScrollToPosition(currentPosition)
-                handler.postDelayed(this, 3000)
+                handler.postDelayed(this, 5000)
             }
         }
     }
 
     private fun startAutoScroll() {
-        handler.postDelayed(autoScrollRunnable, 3000)
+        handler.postDelayed(autoScrollRunnable, 5000)
     }
 
     override fun onDestroy() {
