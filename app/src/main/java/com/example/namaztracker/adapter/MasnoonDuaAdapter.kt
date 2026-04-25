@@ -24,6 +24,7 @@ class MasnoonDuaAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemDuaBinding.bind(view)
+        var isExpanded = false
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,37 +37,54 @@ class MasnoonDuaAdapter(
         val dua = filteredList[position]
 
         with(holder.binding) {
+
             tvTitle.text = dua.title
             tvArabic.text = dua.arabic
             tvTranslation.text = dua.translation
 
+            // Default collapsed state
             tvArabic.visibility = View.GONE
             tvTranslation.visibility = View.GONE
             llActions.visibility = View.GONE
 
             cardDua.setOnClickListener {
-                llActions.visibility = View.VISIBLE
-                val isVisible = tvArabic.visibility == View.VISIBLE
-                TransitionManager.beginDelayedTransition(cardDua, AutoTransition())
+                val isCurrentlyVisible = tvArabic.visibility == View.VISIBLE
 
-                tvArabic.visibility = if (isVisible) View.GONE else View.VISIBLE
-                tvTranslation.visibility = if (isVisible) View.GONE else View.VISIBLE
-                llActions.visibility = if (isVisible) View.GONE else View.VISIBLE
+                // Better Transition for smooth collapse
+                val transition = AutoTransition().apply {
+                    duration = 200L                    // Fast but smooth
+                    interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+                }
+
+                TransitionManager.beginDelayedTransition(cardDua.parent as ViewGroup, transition)                // ↑↑↑ Yeh line important hai - cardDua ki jagah cardDua.parent use karo
+
+                if (isCurrentlyVisible) {
+                    // Collapse
+                    tvArabic.visibility = View.GONE
+                    tvTranslation.visibility = View.GONE
+                    llActions.visibility = View.GONE
+                } else {
+                    // Expand
+                    tvArabic.visibility = View.VISIBLE
+                    tvTranslation.visibility = View.VISIBLE
+                    llActions.visibility = View.VISIBLE
+                }
             }
 
+            // Copy & Share buttons
             btnCopy.setOnClickListener {
                 val clipboard = it.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                clipboard.setPrimaryClip(ClipData.newPlainText("Dua", dua.arabic + "\n" + dua.translation))
+                clipboard.setPrimaryClip(ClipData.newPlainText("Dua", "${dua.arabic}\n${dua.translation}"))
                 Toast.makeText(it.context, "Copied!", Toast.LENGTH_SHORT).show()
             }
 
             btnShare.setOnClickListener {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, "${dua.title}\n\n${dua.arabic}\n${dua.translation}")
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, "${dua.title}\n\n${dua.arabic}\n${dua.translation}")
+                }
                 it.context.startActivity(Intent.createChooser(intent, "Share Dua"))
             }
-
         }
     }
 

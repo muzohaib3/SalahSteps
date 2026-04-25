@@ -38,7 +38,9 @@ class QuranFragment : Fragment() {
 
         webView = binding.llWebView
         webView.webViewClient = WebViewClient()
-        binding.btBack.setOnClickListener { popFragment(requireFragmentManager()) }
+        binding.btBack.setOnClickListener {
+            requireActivity().finish()
+        }
         binding.tvToolbarHeader.text = "Quran Kareem"
         openWebView()
     }

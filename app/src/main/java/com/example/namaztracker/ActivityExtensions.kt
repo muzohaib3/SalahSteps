@@ -4,13 +4,16 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 
 
@@ -79,4 +82,32 @@ fun Context.isOnWifi(): Boolean {
     return capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
             || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
 
+}
+
+/**
+ * Easy way to replace fragment inside FrameLayout from any Fragment
+ */
+fun Fragment.navigateTo(
+    containerId: Int,                    // R.id.fragment_container
+    fragment: Fragment,
+    addToBackStack: Boolean = true,
+    tag: String? = null
+) {
+    val transaction = parentFragmentManager.beginTransaction()
+
+//    // Optional: Animation add kar sakte ho
+//    transaction.setCustomAnimations(
+//        R.anim.slide_in_right,   // enter
+//        R.anim.slide_out_left,   // exit
+//        R.anim.slide_in_left,    // pop enter
+//        R.anim.slide_out_right   // pop exit
+//    )
+
+    transaction.replace(containerId, fragment, tag)
+
+    if (addToBackStack) {
+        transaction.addToBackStack(tag ?: fragment::class.java.simpleName)
+    }
+
+    transaction.commit()
 }

@@ -47,7 +47,7 @@ class IslamicInfoFragment : Fragment() {
 
             tvToolbarHeader.text = "Islamic Information"
             binding.btBack.setOnClickListener {
-                fragmentManager?.popBackStack()
+                requireActivity().finish()
             }
 
         }

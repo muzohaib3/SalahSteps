@@ -1,52 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<FrameLayout
+    android:id="@+id/frameLayoutNamazGuide"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".fragment.namaz.NamazGuideFragment">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_corporate_header">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragment.namaz.NamazGuideFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btBack"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/back"
-            android:tint="@color/white" />
-
-        <TextView
-            android:id="@+id/tvToolbarHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:fontFamily="@font/googlesans_medium"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/_20sdp"
-        android:paddingEnd="@dimen/_20sdp"
-        android:paddingTop="@dimen/_10sdp"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvNamazSteps"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_namaz_step"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corporate_header">
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btBack"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/back"
+                android:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tvToolbarHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/googlesans_medium"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvNamazSteps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_namaz_step"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-</LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

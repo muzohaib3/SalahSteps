@@ -36,4 +36,11 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="CustomSwitchStyle" parent="Theme.AppCompat.Light">
+        <!-- Color when switch is ON -->
+        <item name="colorControlActivated">@color/green</item>
+        <!-- Color of the thumb when switch is OFF -->
+        <item name="colorSwitchThumbNormal">@color/grey</item>
+    </style>
+
 </resources>

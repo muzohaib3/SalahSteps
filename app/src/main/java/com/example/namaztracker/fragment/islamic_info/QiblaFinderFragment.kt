@@ -34,6 +34,7 @@ class QiblaFinderFragment : Fragment() {
         // Dummy location (Karachi)
         qiblaManager.updateLocation(24.8607, 67.0011)
 
+
         return binding.root
     }
 

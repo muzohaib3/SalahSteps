@@ -81,7 +81,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -89,8 +91,10 @@
                 android:text="Today's Progress"
                 android:fontFamily="@font/googlesans_bold"
                 android:textColor="#1A1A1A"
-                android:textSize="18sp"
-                android:layout_marginBottom="16dp"/>
+                android:textSize="16sp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvNamaz"
@@ -101,31 +105,25 @@
                 tools:itemCount="5"
                 tools:listitem="@layout/namaz_detail_item" />
 
-            <com.google.android.material.button.MaterialButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btSave"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="100dp"
                 android:text="Save Prayers"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:fontFamily="@font/googlesans_bold"
                 app:cornerRadius="16dp"
-                android:background="@drawable/bg_corporate_header"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_corporate_rounded_rectangle"
                 app:elevation="4dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.core.widget.NestedScrollView>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:alpha="0.3"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg_mosque"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:tint="@color/green" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

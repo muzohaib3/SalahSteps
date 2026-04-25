@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/namaz"
         android:name="com.example.namaztracker.fragment.MoreFragment"
-        android:label="fragment_namaz"
+        android:label="fragment_more_items"
         tools:layout="@layout/fragment_namaz" />
 <!--        <action-->
 <!--            android:id="@+id/action_namaz_to_hadithFragment"-->

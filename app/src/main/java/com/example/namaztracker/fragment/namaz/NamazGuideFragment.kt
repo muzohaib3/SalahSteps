@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.namaztracker.R
@@ -32,7 +33,7 @@ class NamazGuideFragment : Fragment() {
     private fun setAdapter(){
 
         runCatching {
-            action = arguments?.getString("action").toString()
+            action = arguments?.getString(ARG_ACTION) ?: ""
 
             when(action){
                 "core_salah" -> setAdapter(NamazGuide.namazSteps)
@@ -53,6 +54,10 @@ class NamazGuideFragment : Fragment() {
             logi(""+this::class.simpleName, "exception: ${it.message}")
         }
 
+        binding.btBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
 
     }
 
@@ -62,5 +67,19 @@ class NamazGuideFragment : Fragment() {
             adapter = NamazStepsAdapter(list)
         }
     }
+
+
+
+    companion object {
+        private const val ARG_ACTION = "action"
+
+        fun newInstance(action: String): NamazGuideFragment {
+            return NamazGuideFragment().apply {
+                arguments = bundleOf(ARG_ACTION to action)
+            }
+        }
+    }
+
+
 
 }

@@ -33,7 +33,7 @@ class MasnoonDuaeinFragment : Fragment() {
         binding.tvToolbarHeader.text = "Masnoon Duaein"
 
         binding.btBack.setOnClickListener {
-            fragmentManager?.popBackStack()
+            requireActivity().finish()
         }
 
     }

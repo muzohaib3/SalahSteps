@@ -46,7 +46,9 @@ class HadithFragment : Fragment() {
             }
 
             tvToolbarHeader.text = "Hadith"
-            btBack.setOnClickListener { popFragment(requireFragmentManager()) }
+            binding.btBack.setOnClickListener {
+                requireActivity().finish()
+            }
             binding.etIslamicHadith.addTextChangedListener { IslamicHadithAdapter(Hadith.hadithList).filter(it.toString()) }
 
         }
