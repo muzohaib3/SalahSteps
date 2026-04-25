@@ -26,6 +26,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var maghribSalah:Int = 0
     var ishaSalah:Int = 0
 
+    var isFChk = false
+    var isZChk = false
+    var isAChk = false
+    var isMChk = false
+    var isIChk = false
+
 
     fun updateSalah(fajr:Int , zuhr:Int, asr:Int , maghrib:Int, isha :Int, id:Int){
         viewModelScope.launch(Dispatchers.IO) {

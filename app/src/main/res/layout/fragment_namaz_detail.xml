@@ -112,10 +112,11 @@
                 android:textSize="16sp"
                 android:fontFamily="@font/googlesans_bold"
                 app:cornerRadius="16dp"
-                android:backgroundTint="@color/green"
+                android:background="@drawable/bg_corporate_header"
                 app:elevation="4dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
     </androidx.core.widget.NestedScrollView>
 
     <ImageView

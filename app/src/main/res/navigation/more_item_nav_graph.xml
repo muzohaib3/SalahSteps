@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/more_item_nav_graph">
+
+    <!-- Quran Fragment -->
+    <fragment
+        android:id="@+id/quranFragment"
+        android:name="com.example.namaztracker.fragment.islamic_info.QuranFragment"
+        android:label="fragment_quran"
+        tools:layout="@layout/fragment_quran" />
+
+    <fragment
+        android:id="@+id/qiblaFinderFragment"
+        android:name="com.example.namaztracker.fragment.islamic_info.QiblaFinderFragment"
+        android:label="QiblaFinderFragment"
+        tools:layout="@layout/fragment_qibla_finder" />
+
+    <!-- Masnoon Duas Fragment -->
+    <fragment
+        android:id="@+id/masnoonDuaeinFragment"
+        android:name="com.example.namaztracker.fragment.islamic_info.MasnoonDuaeinFragment"
+        android:label="fragment_masnoon_duaein"
+        tools:layout="@layout/fragment_masnoon_duaein" />
+
+    <!-- Namaz Fragment -->
+    <fragment
+        android:id="@+id/namazFragment"
+        android:name="com.example.namaztracker.fragment.namaz.NamazFragment"
+        android:label="fragment_namaz_info"
+        tools:layout="@layout/fragment_namaz_info" />
+
+    <!-- Hadith Fragment -->
+    <fragment
+        android:id="@+id/hadithFragment"
+        android:name="com.example.namaztracker.fragment.islamic_info.HadithFragment"
+        android:label="fragment_hadith"
+        tools:layout="@layout/fragment_hadith" />
+
+    <!-- Namaz Guide Fragment -->
+    <fragment
+        android:id="@+id/namazGuideFragment"
+        android:name="com.example.namaztracker.fragment.namaz.NamazGuideFragment"
+        android:label="fragment_namaz_guide"
+        tools:layout="@layout/fragment_namaz_guide" />
+
+    <!-- Islamic Info Fragment -->
+    <fragment
+        android:id="@+id/islamicInfoFragment"
+        android:name="com.example.namaztracker.fragment.islamic_info.IslamicInfoFragment"
+        android:label="fragment_islamic_info"
+        tools:layout="@layout/fragment_islamic_info" />
+
+</navigation>

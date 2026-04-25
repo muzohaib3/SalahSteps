@@ -22,29 +22,29 @@
         android:id="@+id/namaz"
         android:name="com.example.namaztracker.fragment.MoreFragment"
         android:label="fragment_namaz"
-        tools:layout="@layout/fragment_namaz" >
-        <action
-            android:id="@+id/action_namaz_to_hadithFragment"
-            app:destination="@id/hadithFragment" />
-        <action
-            android:id="@+id/action_namaz_to_islamicInfoFragment"
-            app:destination="@id/islamicInfoFragment" />
-        <action
-            android:id="@+id/action_namaz_to_masnoonDuaeinFragment"
-            app:destination="@id/masnoonDuaeinFragment" />
-        <action
-            android:id="@+id/action_namaz_to_namazFragment"
-            app:destination="@id/namazFragment" />
-        <action
-            android:id="@+id/action_namaz_to_qiblaFinderFragment"
-            app:destination="@id/qiblaFinderFragment" />
-        <action
-            android:id="@+id/action_namaz_to_quranFragment"
-            app:destination="@id/quranFragment" />
-        <action
-            android:id="@+id/action_namaz_to_namazGuideFragment"
-            app:destination="@id/namazGuideFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_namaz" />
+<!--        <action-->
+<!--            android:id="@+id/action_namaz_to_hadithFragment"-->
+<!--            app:destination="@id/hadithFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_namaz_to_islamicInfoFragment"-->
+<!--            app:destination="@id/islamicInfoFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_namaz_to_masnoonDuaeinFragment"-->
+<!--            app:destination="@id/masnoonDuaeinFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_namaz_to_namazFragment"-->
+<!--            app:destination="@id/namazFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_namaz_to_qiblaFinderFragment"-->
+<!--            app:destination="@id/qiblaFinderFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_namaz_to_quranFragment"-->
+<!--            app:destination="@id/quranFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_namaz_to_namazGuideFragment"-->
+<!--            app:destination="@id/namazGuideFragment" />-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/qaza"
@@ -60,45 +60,48 @@
             android:id="@+id/action_namazDetail_to_tracker"
             app:destination="@id/tracker" />
     </fragment>
-    <fragment
-        android:id="@+id/hadithFragment"
-        android:name="com.example.namaztracker.fragment.islamic_info.HadithFragment"
-        android:label="fragment_hadith"
-        tools:layout="@layout/fragment_hadith" />
-    <fragment
-        android:id="@+id/islamicInfoFragment"
-        android:name="com.example.namaztracker.fragment.islamic_info.IslamicInfoFragment"
-        android:label="fragment_islamic_info"
-        tools:layout="@layout/fragment_islamic_info" />
-    <fragment
-        android:id="@+id/masnoonDuaeinFragment"
-        android:name="com.example.namaztracker.fragment.islamic_info.MasnoonDuaeinFragment"
-        android:label="fragment_masnoon_duaein"
-        tools:layout="@layout/fragment_masnoon_duaein" />
-    <fragment
-        android:id="@+id/namazFragment"
-        android:name="com.example.namaztracker.fragment.namaz.NamazFragment"
-        android:label="fragment_namaz_info"
-        tools:layout="@layout/fragment_namaz_info" />
-    <fragment
-        android:id="@+id/qiblaFinderFragment"
-        android:name="QiblaFinderFragment"
-        tools:layout="@layout/fragment_qibla_finder"
-        android:label="QiblaFinderFragment" />
-    <fragment
-        android:id="@+id/quranFragment"
-        android:name="com.example.namaztracker.fragment.islamic_info.QuranFragment"
-        android:label="fragment_quran"
-        tools:layout="@layout/fragment_quran" />
+
     <fragment
         android:id="@+id/namazDetailStatusFragment"
         android:name="com.example.namaztracker.fragment.NamazDetailStatusFragment"
         android:label="NamazDetailStatusFragment"
         tools:layout="@layout/fragment_namaz_detail_status"/>
-    <fragment
-        android:id="@+id/namazGuideFragment"
-        android:name="com.example.namaztracker.fragment.namaz.NamazGuideFragment"
-        android:label="fragment_namaz_guide"
-        tools:layout="@layout/fragment_namaz_guide" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/hadithFragment"-->
+<!--        android:name="com.example.namaztracker.fragment.islamic_info.HadithFragment"-->
+<!--        android:label="fragment_hadith"-->
+<!--        tools:layout="@layout/fragment_hadith" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/islamicInfoFragment"-->
+<!--        android:name="com.example.namaztracker.fragment.islamic_info.IslamicInfoFragment"-->
+<!--        android:label="fragment_islamic_info"-->
+<!--        tools:layout="@layout/fragment_islamic_info" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/masnoonDuaeinFragment"-->
+<!--        android:name="com.example.namaztracker.fragment.islamic_info.MasnoonDuaeinFragment"-->
+<!--        android:label="fragment_masnoon_duaein"-->
+<!--        tools:layout="@layout/fragment_masnoon_duaein" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/namazFragment"-->
+<!--        android:name="com.example.namaztracker.fragment.namaz.NamazFragment"-->
+<!--        android:label="fragment_namaz_info"-->
+<!--        tools:layout="@layout/fragment_namaz_info" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/qiblaFinderFragment"-->
+<!--        android:name="QiblaFinderFragment"-->
+<!--        tools:layout="@layout/fragment_qibla_finder"-->
+<!--        android:label="QiblaFinderFragment" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/quranFragment"-->
+<!--        android:name="com.example.namaztracker.fragment.islamic_info.QuranFragment"-->
+<!--        android:label="fragment_quran"-->
+<!--        tools:layout="@layout/fragment_quran" />-->
+<!--   -->
+<!--    <fragment-->
+<!--        android:id="@+id/namazGuideFragment"-->
+<!--        android:name="com.example.namaztracker.fragment.namaz.NamazGuideFragment"-->
+<!--        android:label="fragment_namaz_guide"-->
+<!--        tools:layout="@layout/fragment_namaz_guide" />-->
 
 </navigation>

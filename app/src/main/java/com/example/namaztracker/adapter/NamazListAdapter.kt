@@ -41,7 +41,7 @@ class NamazListAdapter(
         with(holder.binding) {
 
             tvDate.text = data
-            tvDay.text = ", ${getDayName(data)}"
+            tvDay.text = "${getDayName(data)}"
             llListItem.setBackgroundColor(ContextCompat.getColor(context, android.R.color.white))
 
             try {
@@ -55,12 +55,10 @@ class NamazListAdapter(
                     }
 
                     salahModel.fajr == 1 && salahModel.zuhr == 1 &&
-                            salahModel.asr == 1 && salahModel.maghrib == 1 &&
-                            salahModel.isha == 1 -> {
-
-                        llListItem.setBackgroundColor(
-                            ContextCompat.getColor(context, R.color._light_green)
-                        )
+                    salahModel.asr == 1 && salahModel.maghrib == 1 &&
+                    salahModel.isha == 1 ->
+                    {
+                        llListItem.setBackgroundColor(ContextCompat.getColor(context, R.color._light_green))
                     }
 
                     else -> {

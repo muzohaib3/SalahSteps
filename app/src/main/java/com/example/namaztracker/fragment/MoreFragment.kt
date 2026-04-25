@@ -1,5 +1,6 @@
 package com.example.namaztracker.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,10 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.findNavController
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.namaztracker.activity.MoreItemsActivity
 import com.example.namaztracker.adapter.IslamicInfoTypeAdapter
 import com.example.namaztracker.databinding.FragmentNamazBinding
 import com.example.namaztracker.fragment.bottomsheet.GenericBottomSheet
@@ -21,7 +22,6 @@ import com.example.namaztracker.getClassName
 import com.example.namaztracker.isOnWifi
 import com.example.namaztracker.loge
 import com.example.namaztracker.model.TaleemModel
-import com.example.namaztracker.showToast
 
 class MoreFragment : Fragment() {
 
@@ -52,15 +52,14 @@ class MoreFragment : Fragment() {
                 adapter = IslamicInfoTypeAdapter(homeItems) { item ->
 
                     when (item.title) {
-                        "Namaz" -> findNavController().navigate(R.id.action_namaz_to_namazFragment)
-                        "Masnoon Duaen" -> findNavController().navigate(R.id.action_namaz_to_masnoonDuaeinFragment)
-                        "Hadith" -> findNavController().navigate(R.id.action_namaz_to_hadithFragment)
-                        "Islamic FAQ" -> findNavController().navigate(R.id.action_namaz_to_islamicInfoFragment)
-//                        "Qibla" -> /*findNavController().navigate(R.id.qiblaFinderFragment)*/ showToast(requireContext(), "Coming soon")
-                        "Qibla" -> findNavController().navigate(R.id.qiblaFinderFragment)
+                        "Namaz" -> fragmentToActivity("namaz")
+                        "Masnoon Duaen" -> fragmentToActivity("masnoon_duas")
+                        "Hadith" -> fragmentToActivity("hadith")
+                        "Islamic FAQ" -> fragmentToActivity("islamic_faq")
+                        "Qibla" -> fragmentToActivity("qibla")
                         "Quran" -> {
                             if(requireContext().isOnWifi()){
-                                findNavController().navigate(R.id.action_namaz_to_quranFragment)
+                                fragmentToActivity("quran")
                             }else{
                                 val errorSheet = GenericErrorBottomSheet("please turn on your internet")
                                 errorSheet.show(childFragmentManager, "")
@@ -99,6 +98,12 @@ class MoreFragment : Fragment() {
             bottomSheet.show(childFragmentManager, "")
         }
 
+    }
+
+    private fun fragmentToActivity(key:String){
+        val intent = Intent(requireActivity(), MoreItemsActivity::class.java)
+        intent.putExtra("key", key)
+        startActivity(intent)
     }
 
 

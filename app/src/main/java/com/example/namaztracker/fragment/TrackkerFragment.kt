@@ -175,21 +175,36 @@ class TrackkerFragment : Fragment() {
 
     private val autoScrollRunnable = object : Runnable {
         override fun run() {
-            if (namazTrackkerAdapter.itemCount > 0) {
-                currentPosition = (currentPosition + 1) % namazTrackkerAdapter.itemCount
+            val layoutManager = binding.llRvHeader.layoutManager as? LinearLayoutManager
+            val itemCount = namazTrackkerAdapter.itemCount
+
+            if (itemCount > 0) {
+                currentPosition = (currentPosition + 1) % itemCount
+
                 binding.llRvHeader.smoothScrollToPosition(currentPosition)
-                handler.postDelayed(this, 5000)
+
+                handler.postDelayed(this, 12000)
             }
         }
     }
 
     private fun startAutoScroll() {
-        handler.postDelayed(autoScrollRunnable, 5000)
+        handler.removeCallbacks(autoScrollRunnable)
+        handler.postDelayed(autoScrollRunnable, 12000)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun stopAutoScroll() {
         handler.removeCallbacks(autoScrollRunnable)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopAutoScroll()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startAutoScroll()
     }
 
     private fun populateSalahList(list:List<String>){

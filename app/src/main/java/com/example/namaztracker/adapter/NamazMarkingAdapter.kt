@@ -41,6 +41,12 @@ class NamazMarkingAdapter(
             tvNamazName.text = data.name
             tvTime.text = data.time
 
+            viewModel.ishaSalah = 0
+            viewModel.zuhrSalah = 0
+            viewModel.asrSalah = 0
+            viewModel.maghribSalah = 0
+            viewModel.ishaSalah = 0
+
             // ---- remove listener before setting checked state
             toggleNamaz.setOnCheckedChangeListener(null)
 
@@ -70,13 +76,35 @@ class NamazMarkingAdapter(
             }
 
             // ---- Now add listener back
+
+            viewModel.isFChk = false
+            viewModel.isZChk = false
+            viewModel.isAChk = false
+            viewModel.isMChk = false
+            viewModel.isIChk = false
+
             toggleNamaz.setOnCheckedChangeListener { _, isChecked ->
                 when (data.name) {
-                    "Fajr" -> viewModel.fajrSalah = if (isChecked) 1 else 0
-                    "Zuhr" -> viewModel.zuhrSalah = if (isChecked) 1 else 0
-                    "Asr" -> viewModel.asrSalah = if (isChecked) 1 else 0
-                    "Maghrib" -> viewModel.maghribSalah = if (isChecked) 1 else 0
-                    "Isha" -> viewModel.ishaSalah = if (isChecked) 1 else 0
+                    "Fajr" ->{
+                        viewModel.fajrSalah = if (isChecked) 1 else 0
+                        viewModel.isFChk = true
+                    }
+                    "Zuhr" ->{
+                        viewModel.zuhrSalah = if (isChecked) 1 else 0
+                        viewModel.isZChk = true
+                    }
+                    "Asr" ->{
+                        viewModel.asrSalah = if (isChecked) 1 else 0
+                        viewModel.isAChk = true
+                    }
+                    "Maghrib" -> {
+                        viewModel.maghribSalah = if (isChecked) 1 else 0;
+                        viewModel.isMChk = true
+                    }
+                    "Isha" ->{
+                        viewModel.ishaSalah = if (isChecked) 1 else 0;
+                        viewModel.isIChk = true
+                    }
                 }
             }
         }

@@ -61,7 +61,7 @@ class NamazFragment : Fragment() {
                     adapter = IslamicInfoTypeAdapter(namazItems) { item ->
 
                         val action = when (item.title) {
-                            "Core Steps" ->  { "core_salah"}
+                            "Core Steps" ->  {"core_salah"}
                             "Wudu Guide" ->{"wudu_guide"}
                             "Conditions"->{"conditions"}
                             "Prayer Types"->{"p_types"}

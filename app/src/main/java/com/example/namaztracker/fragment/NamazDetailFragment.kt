@@ -19,6 +19,7 @@ import com.example.namaztracker.adapter.NamazMarkingAdapter
 import com.example.namaztracker.architecture.database.AppDB
 import com.example.namaztracker.architecture.viewModel.MainViewModel
 import com.example.namaztracker.databinding.FragmentNamazDetailBinding
+import com.example.namaztracker.fragment.bottomsheet.GenericErrorBottomSheet
 import com.example.namaztracker.getClassName
 import com.example.namaztracker.loge
 import com.example.namaztracker.logi
@@ -86,11 +87,22 @@ class NamazDetailFragment : Fragment() {
             logi(getClassName(requireContext()), "salahModel == null\n setSalahList() --> ${setSalahList()}")
 
             binding.btSave.setOnClickListener{
-                if (isUpdateMode!!){
-                    updateRecord(viewModel.fajrSalah, viewModel.zuhrSalah, viewModel.asrSalah, viewModel.maghribSalah, viewModel.ishaSalah, salahModel?.id!!)
+//                if (isUpdateMode!!){
+//                    updateRecord(viewModel.fajrSalah, viewModel.zuhrSalah, viewModel.asrSalah, viewModel.maghribSalah, viewModel.ishaSalah, salahModel?.id!!)
+//                }else{
+//
+//                }
+                val vm = viewModel
+
+                val areAllEmpty = !vm.isFChk && !vm.isZChk && !vm.isAChk && !vm.isMChk && !vm.isIChk
+
+                if (areAllEmpty){
+                    val sheet = GenericErrorBottomSheet("Please mark your prayer first")
+                    sheet.show(parentFragmentManager, "")
                 }else{
                     addRecord()
                 }
+
             }
 
         }catch (e:Exception){

@@ -1,3 +1,5 @@
+package com.example.namaztracker.fragment.islamic_info
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -5,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.namaztracker.databinding.FragmentQiblaFinderBinding
 import com.example.namaztracker.fragment.islamic_info.qibla.QiblaManager
+
 import kotlin.math.abs
 
 class QiblaFinderFragment : Fragment() {

@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NamazTracker"
         tools:targetApi="31">
+
+        <activity
+            android:name=".activity.MoreItemsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_more_item"
+            android:theme="@style/Theme.NamazTracker" />
         <activity
             android:name=".screens.OnBoardingActivity"
             android:exported="false" />
@@ -44,7 +50,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>
